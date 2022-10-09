@@ -1,14 +1,16 @@
+//Akashdeep-k
+//Tic tac toe terminal game
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
-void boardPrint(char board[][3]){
+void boardPrint(char board[][3]){//printing the match stats
     cout << board[0][0] << " | " << board[0][1] << " | " << board[0][2] << endl;
     cout << "---------" << endl;
     cout << board[1][0] << " | " << board[1][1] << " | " << board[1][2] << endl;
     cout << "---------" << endl;
     cout << board[2][0] << " | " << board[2][1] << " | " << board[2][2] << endl;
 }
-void choiceInput(char board[][3]){
+void choiceInput(char board[][3]){//printing input matrix of valid choices
     (board[0][0] == ' ') ? cout << "1" : cout << " "; cout << " | ";
     (board[0][1] == ' ') ? cout << "2" : cout << " "; cout << " | ";
     (board[0][2] == ' ') ? cout << "3" : cout << " "; cout << endl << "---------" << endl;
@@ -19,7 +21,7 @@ void choiceInput(char board[][3]){
     (board[2][1] == ' ') ? cout << "8" : cout << " "; cout << " | ";
     (board[2][2] == ' ') ? cout << "9" : cout << " "; cout << endl;
 }
-void replace_symbol(char board[][3], int choice, int i){
+void replace_symbol(char board[][3], int choice, int i){//adding the symbol to board matrix
     char symbol;
     if (i % 2 == 0)
         symbol = 'X';
@@ -35,28 +37,31 @@ void replace_symbol(char board[][3], int choice, int i){
     if (choice == 8){ board[2][1] = symbol;}
     if (choice == 9){ board[2][2] = symbol;}
 }
-bool win_check(char board[][3], int i){
+bool win_check(char board[][3], int i){//checking if there is a win
     char symbol;
     if (i % 2 == 0)
         symbol = 'X';
     else
         symbol = 'O';
+    //rows checking
     if (board[0][0] == symbol && board[0][1] == symbol && board[0][2] == symbol) return true;
     if (board[1][0] == symbol && board[1][1] == symbol && board[1][2] == symbol) return true;
     if (board[2][0] == symbol && board[2][1] == symbol && board[2][2] == symbol) return true;
+    //columns checking
     if (board[0][0] == symbol && board[1][0] == symbol && board[2][0] == symbol) return true;
     if (board[0][1] == symbol && board[1][1] == symbol && board[2][1] == symbol) return true;
     if (board[0][2] == symbol && board[1][2] == symbol && board[2][2] == symbol) return true;
+    //diagonals checking
     if (board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol) return true;
     if (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol) return true;
-
+    //no win
     return false;
 }
 int main(){
     char board[3][3] = {{' ', ' ', ' '},
                         {' ', ' ', ' '},
                         {' ', ' ', ' '}};
-    int choice;
+    int choice;//for choice of user to place symbol
     int i = 0;
     while (i < 9){
         system("CLS");
