@@ -64,7 +64,13 @@ int main(){
     int choice;//for choice of user to place symbol
     int i = 0;
     while (i < 9){
+        #if __linux__
+        system("clear");
+        #elif _WIN64
         system("CLS");
+        #else
+        system("clear");
+        #endif            
         cout << endl;
         boardPrint(board);
         if (i % 2 == 0)
@@ -76,7 +82,13 @@ int main(){
         cin >> choice;
         replace_symbol(board, choice, i);
         if (win_check(board, i)){
+            #if __linux__
+            system("clear");
+            #elif _WIN64
             system("CLS");
+            #else
+            system("clear");
+            #endif            
             cout << endl;
             boardPrint(board);
             if (i % 2 == 0)
@@ -88,7 +100,13 @@ int main(){
         i++;
     }
     if (i == 9){
+        #if __linux__
+        system("clear");
+        #elif _WIN64
         system("CLS");
+        #else
+        system("clear");
+        #endif            
         cout << endl;
         boardPrint(board);
         cout << "*** Match Draw ***";
