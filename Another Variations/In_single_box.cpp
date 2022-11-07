@@ -3,6 +3,15 @@
 #include<iostream>
 #include<conio.h>
 using namespace std;
+void scrclr(){
+    #if __linux__
+    system("clear");
+    #elif _WIN64
+    system("CLS");
+    #else
+    system("clear");
+    #endif 
+}
 void boardPrint(char board[][3]){
     (board[0][0] == ' ') ? cout<<"1" : cout<<board[0][0]; cout<<" | ";
     (board[0][1] == ' ') ? cout<<"2" : cout<<board[0][1]; cout<<" | ";
@@ -55,7 +64,7 @@ int main(){
     int choice;
     int i = 0;
     while(i < 9){
-        system("CLS");
+        scrclr();
         cout << endl;
         boardPrint(board);
         if (i % 2 == 0)
@@ -66,7 +75,7 @@ int main(){
         cin >> choice;
         addSymbol(board, choice, i);
         if (win_check(board, i)){
-            system("CLS");
+            scrclr();
             cout << endl;
             boardPrint(board);
             if (i % 2 == 0)
@@ -78,7 +87,7 @@ int main(){
         i++;
     }
     if (i == 9){
-        system("CLS");
+        scrclr();
         cout << endl;
         boardPrint(board);
         cout << "*** Match Draw ***";
