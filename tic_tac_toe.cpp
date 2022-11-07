@@ -1,8 +1,15 @@
-//Akashdeep-k
-//Tic tac toe terminal game
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
+void scrclr(){
+    #if __linux__
+    system("clear");
+    #elif _WIN64
+    system("CLS");
+    #else
+    system("clear");
+    #endif 
+}
 void boardPrint(char board[][3]){//printing the match stats
     cout << board[0][0] << " | " << board[0][1] << " | " << board[0][2] << endl;
     cout << "---------" << endl;
@@ -64,7 +71,7 @@ int main(){
     int choice;//for choice of user to place symbol
     int i = 0;
     while (i < 9){
-        system("CLS");
+        scrclr();       
         cout << endl;
         boardPrint(board);
         if (i % 2 == 0)
@@ -76,7 +83,7 @@ int main(){
         cin >> choice;
         replace_symbol(board, choice, i);
         if (win_check(board, i)){
-            system("CLS");
+            scrclr();      
             cout << endl;
             boardPrint(board);
             if (i % 2 == 0)
@@ -88,7 +95,7 @@ int main(){
         i++;
     }
     if (i == 9){
-        system("CLS");
+        scrclr();           
         cout << endl;
         boardPrint(board);
         cout << "*** Match Draw ***";
